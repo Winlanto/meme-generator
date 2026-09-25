@@ -1,0 +1,32 @@
+.main-content {
+  padding: 2.5rem 0;
+}
+.meme-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@media (min-width: 600px) {
+  .meme-form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .submit-btn {
+    grid-column: 1 / -1
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
