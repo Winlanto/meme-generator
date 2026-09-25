@@ -1,0 +1,28 @@
+.header { 
+  background-color: var(--primary-color);
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  color: #ffffff;
+  font-size: 1.5rem; 
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: color var(--transition-fast);
+}
+
+.logo:hover,
+.logo:focus-visible {
+  color: var(--accent-color);
+  outline: none;
+}
+
+.logo img {
+  height: 40px;
+  width: auto;
+}
