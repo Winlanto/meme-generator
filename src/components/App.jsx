@@ -1,15 +1,37 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function App() {
+  const [isRandom, setIsRandom] = useState(false);
+  const [memeCounter, setMemeCounter] = useState(0);
   const [meme, setMeme] = useState({
     topText: "",
     bottomText: "",
     imageUrl: "https://i.imgflip.com/1bij.jpg",
   });
 
+  useEffect(() => {
+    fetch("https://api.imgflip.com/get_memes")
+      .then((res) => res.json())
+      .then((data) => {
+        setMeme((prevMeme) => ({
+          ...prevMeme,
+          imageUrl: data.data.memes[memeCounter].url,
+        }));
+      });
+  }, [memeCounter]);
+
   function handleSubmit(e) {
     e.preventDefault();
+    const randomIndex = Math.floor(Math.random() * 100);
+    if (isRandom) {
+      setMemeCounter(randomIndex);
+    } else {
+      setMemeCounter((prevCounter) => {
+        const newCounter = prevCounter + 11;
+        return newCounter % 100; //
+      });
+    }
   }
 
   function handleChange(e) {
@@ -44,6 +66,16 @@ export default function App() {
               name="bottomText"
               placeholder="Walk into Mordor"
               onChange={handleChange}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="random">Random</label>
+            <input
+              type="checkbox"
+              id="random"
+              name="random"
+              onChange={(e) => setIsRandom(e.target.checked)}
             />
           </div>
 
